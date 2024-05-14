@@ -11,6 +11,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
+    androidTestImplementation("junit:junit:4.12")
     debugImplementation(libs.androidx.compose.ui.tooling)
     api(libs.androidx.compose.material3)
 }

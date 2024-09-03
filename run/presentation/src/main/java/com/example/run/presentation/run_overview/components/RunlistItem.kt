@@ -71,29 +71,60 @@ fun RunListItem(
         mutableStateOf(false)
     }
 
-    Column(
-        modifier = modifier
-            .clip(RoundedCornerShape(15.dp))
-            .background(MaterialTheme.colorScheme.surface)
-            .combinedClickable(
-                onClick = {},
-                onLongClick = {
-                    showDropDown = true
+    Box {
+
+
+        Column(
+            modifier = modifier
+                .clip(RoundedCornerShape(15.dp))
+                .background(MaterialTheme.colorScheme.surface)
+                .combinedClickable(
+                    onClick = {},
+                    onLongClick = {
+                        showDropDown = true
+                    }
+                )
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+
+            MapImage(imageUrl = runUi.mapPictureUrl)
+
+            RunningTimeSection(
+                duration = runUi.duration,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            HorizontalDivider(
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
+            )
+
+            RunningDateSection(dateTime = runUi.dateTime)
+            DataGrid(
+                run = runUi,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        DropdownMenu(
+            expanded = showDropDown,
+            onDismissRequest = { showDropDown = false }
+        ) {
+
+            DropdownMenuItem(
+                text = {
+                    Text(text = stringResource(id = R.string.delete))
+                },
+                onClick = {
+                    showDropDown = false
+                    onDeleteClick
                 }
             )
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
 
-        MapImage(imageUrl = runUi.mapPictureUrl)
-
-        RunningTimeSection(
-            duration = runUi.duration,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-
+        }
     }
+
+
 }
 
 @Composable
@@ -185,14 +216,97 @@ private fun RunningTimeSection(
                 text = stringResource(id = R.string.total_running_time),
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
-            
+            Text(
+                text = duration,
+                color = MaterialTheme.colorScheme.onSurface
+            )
 
-            
         }
 
 
     }
+}
 
+@Composable
+private fun RunningDateSection(
+    modifier: Modifier = Modifier,
+    dateTime: String
+) {
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+
+    ) {
+        Icon(
+            imageVector = CalendarIcon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+
+        Text(
+            text = dateTime,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+
+    }
+
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun DataGrid(
+    run: RunUi,
+    modifier: Modifier = Modifier
+
+) {
+
+    val runDataUiList = listOf(
+        RunDataUi(
+            name = stringResource(id = R.string.distance),
+            value = run.distance
+        ),
+        RunDataUi(
+            name = stringResource(id = R.string.pace),
+            value = run.pace
+        ),
+        RunDataUi(
+            name = stringResource(id = R.string.avg_speed),
+            value = run.avgSpeed
+        ),
+        RunDataUi(
+            name = stringResource(id = R.string.max_speed),
+            value = run.maxSpeed
+        ),
+        RunDataUi(
+            name = stringResource(id = R.string.total_elevation),
+            value = run.totalElevation
+        ),
+    )
+    var maxWidth by remember {
+        mutableIntStateOf(0)
+    }
+
+    val maxWidthDp = with(LocalDensity.current) { maxWidth.toDp() }
+
+    FlowRow(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+
+        runDataUiList.forEach { run ->
+            DataGridCell(
+                runData = run,
+                modifier = Modifier
+                    .defaultMinSize(minWidth = maxWidthDp)
+                    .onSizeChanged {
+                        maxWidth = max(maxWidth, it.width)
+                    }
+            )
+        }
+    }
 }
 
 @Composable

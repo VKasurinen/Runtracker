@@ -21,4 +21,8 @@
     <string name="run_map">Run map</string>
     <string name="error_couldnt_load_image">Couldn\'t load image</string>
     <string name="total_running_time">Total running time</string>
+    <string name="avg_speed">Ø Speed</string>
+    <string name="max_speed">Max speed</string>
+    <string name="total_elevation">Total elevation</string>
+    <string name="delete">Delete</string>
 </resources>

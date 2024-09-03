@@ -3,7 +3,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.example.runique.buildlogic"
+group = "com.plcoding.runique.buildlogic"
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
@@ -27,12 +27,10 @@ gradlePlugin {
             id = "runique.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
-
         register("androidLibraryCompose") {
             id = "runique.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
-
         register("androidFeatureUi") {
             id = "runique.android.feature.ui"
             implementationClass = "AndroidFeatureUiConventionPlugin"
@@ -49,7 +47,6 @@ gradlePlugin {
             id = "runique.jvm.ktor"
             implementationClass = "JvmKtorConventionPlugin"
         }
-
     }
 }
 

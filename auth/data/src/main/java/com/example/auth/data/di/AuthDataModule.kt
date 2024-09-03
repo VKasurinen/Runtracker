@@ -1,4 +1,4 @@
-package com.example.auth.di
+package com.example.auth.data.di
 
 import com.example.auth.data.AuthRepositoryImpl
 import com.example.auth.data.EmailPatternValidator

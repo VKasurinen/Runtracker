@@ -7,12 +7,12 @@ import android.location.LocationManager
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.core.content.getSystemService
-import com.example.core.domain.location.LocationWithAltitude
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
+import com.example.core.domain.location.LocationWithAltitude
 import com.example.run.domain.LocationObserver
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay

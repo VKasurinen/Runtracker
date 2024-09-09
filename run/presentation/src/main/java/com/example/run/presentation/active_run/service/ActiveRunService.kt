@@ -22,7 +22,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
-
+import java.lang.IllegalArgumentException
 
 class ActiveRunService: Service() {
 
@@ -40,7 +40,7 @@ class ActiveRunService: Service() {
 
     private var serviceScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
-    override fun onBind(p0: Intent?): IBinder? {
+    override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
@@ -55,29 +55,28 @@ class ActiveRunService: Service() {
         }
         return START_STICKY
     }
-    private fun start(activityClass: Class<*>){
+
+    private fun start(activityClass: Class<*>) {
         if(!isServiceActive) {
             isServiceActive = true
             createNotificationChannel()
+
+            val activityIntent = Intent(applicationContext, activityClass).apply {
+                data = "runique://active_run".toUri()
+                addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            }
+            val pendingIntent = TaskStackBuilder.create(applicationContext).run {
+                addNextIntentWithParentStack(activityIntent)
+                getPendingIntent(0, PendingIntent.FLAG_IMMUTABLE)
+            }
+            val notification = baseNotification
+                .setContentText("00:00:00")
+                .setContentIntent(pendingIntent)
+                .build()
+
+            startForeground(1, notification)
+            updateNotification()
         }
-
-        val activityIntent = Intent(applicationContext, activityClass).apply {
-            data = "runique://active_run".toUri()
-            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        }
-
-        val pedingIntent = TaskStackBuilder.create(applicationContext).run {
-            addNextIntentWithParentStack(activityIntent)
-            getPendingIntent(0,PendingIntent.FLAG_IMMUTABLE)
-        }
-
-        val notification = baseNotification
-            .setContentText("00:00:00")
-            .setContentIntent(pedingIntent)
-            .build()
-
-        startForeground(1, notification)
-        updateNotification()
     }
 
     private fun updateNotification() {
@@ -87,7 +86,6 @@ class ActiveRunService: Service() {
                 .build()
 
             notificationManager.notify(1, notification)
-
         }.launchIn(serviceScope)
     }
 
@@ -109,6 +107,7 @@ class ActiveRunService: Service() {
             notificationManager.createNotificationChannel(channel)
         }
     }
+
     companion object {
         var isServiceActive = false
         private const val CHANNEL_ID = "active_run"

@@ -15,7 +15,6 @@ class MainViewModel(
     var state by mutableStateOf(MainState())
         private set
 
-
     init {
         viewModelScope.launch {
             state = state.copy(isCheckingAuth = true)
@@ -25,5 +24,4 @@ class MainViewModel(
             state = state.copy(isCheckingAuth = false)
         }
     }
-
 }

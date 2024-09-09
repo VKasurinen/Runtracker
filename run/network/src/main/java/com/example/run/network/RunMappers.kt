@@ -1,6 +1,5 @@
 package com.example.run.network
 
-import com.example.core.data.R
 import com.example.core.domain.location.Location
 import com.example.core.domain.run.Run
 import java.time.Instant
@@ -8,7 +7,7 @@ import java.time.ZoneId
 import kotlin.time.Duration.Companion.milliseconds
 
 fun RunDto.toRun(): Run {
-    return Run (
+    return Run(
         id = id,
         duration = durationMillis.milliseconds,
         dateTimeUtc = Instant.parse(dateTimeUtc)
@@ -18,8 +17,6 @@ fun RunDto.toRun(): Run {
         maxSpeedKmh = maxSpeedKmh,
         totalElevationMeters = totalElevationMeters,
         mapPictureUrl = mapPictureUrl
-
-
     )
 }
 

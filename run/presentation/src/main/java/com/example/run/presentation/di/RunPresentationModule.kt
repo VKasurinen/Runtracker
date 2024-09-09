@@ -1,6 +1,5 @@
 package com.example.run.presentation.di
 
-
 import com.example.run.domain.RunningTracker
 import com.example.run.presentation.active_run.ActiveRunViewModel
 import com.example.run.presentation.run_overview.RunOverviewViewModel

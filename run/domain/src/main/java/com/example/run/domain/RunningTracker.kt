@@ -5,12 +5,10 @@ package com.example.run.domain
 import com.example.core.domain.Timer
 import com.example.core.domain.location.LocationTimestamp
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
@@ -33,6 +31,7 @@ class RunningTracker(
 
     private val _isTracking = MutableStateFlow(false)
     val isTracking = _isTracking.asStateFlow()
+
     private val isObservingLocation = MutableStateFlow(false)
 
     private val _elapsedTime = MutableStateFlow(Duration.ZERO)
@@ -126,6 +125,13 @@ class RunningTracker(
 
     fun stopObservingLocation() {
         isObservingLocation.value = false
+    }
+
+    fun finishRun() {
+        stopObservingLocation()
+        setIsTracking(false)
+        _elapsedTime.value = Duration.ZERO
+        _runData.value = RunData()
     }
 }
 

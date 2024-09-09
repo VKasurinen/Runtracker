@@ -3,7 +3,7 @@ package com.example.run.presentation.active_run
 import com.example.core.domain.location.Location
 import com.example.run.domain.RunData
 import kotlin.time.Duration
-
+import kotlin.time.Duration.Companion.minutes
 
 data class ActiveRunState(
     val elapsedTime: Duration = Duration.ZERO,

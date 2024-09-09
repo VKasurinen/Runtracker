@@ -26,8 +26,7 @@ class KtorRemoteRunDataSource(
     override suspend fun getRuns(): Result<List<Run>, DataError.Network> {
         return httpClient.get<List<RunDto>>(
             route = "/runs",
-        ).map {
-            runDtos ->
+        ).map { runDtos ->
             runDtos.map { it.toRun() }
         }
     }

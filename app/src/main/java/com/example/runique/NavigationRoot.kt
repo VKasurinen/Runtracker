@@ -23,7 +23,7 @@ fun NavigationRoot(
 ) {
     NavHost(
         navController = navController,
-        startDestination = if(isLoggedIn) "run" else "auth"
+        startDestination = if (isLoggedIn) "run" else "auth"
     ) {
         authGraph(navController)
         runGraph(navController)
@@ -93,10 +93,16 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
             RunOverviewScreenRoot(
                 onStartRunClick = {
                     navController.navigate("active_run")
+                },
+                onLogoutClick = {
+                    navController.navigate("auth") {
+                        popUpTo("run") {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
-
         composable(
             route = "active_run",
             deepLinks = listOf(
@@ -104,12 +110,17 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
                     uriPattern = "runique://active_run"
                 }
             )
-
         ) {
             val context = LocalContext.current
             ActiveRunScreenRoot(
+                onBack = {
+                    navController.navigateUp()
+                },
+                onFinish = {
+                    navController.navigateUp()
+                },
                 onServiceToggle = { shouldServiceRun ->
-                    if(shouldServiceRun) {
+                    if (shouldServiceRun) {
                         context.startService(
                             ActiveRunService.createStartIntent(
                                 context = context,

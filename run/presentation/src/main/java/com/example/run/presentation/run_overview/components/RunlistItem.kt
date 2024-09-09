@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalFoundationApi::class, ExperimentalLayoutApi::class)
+
 package com.example.run.presentation.run_overview.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -38,7 +40,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,7 +50,6 @@ import com.example.core.domain.run.Run
 import com.example.core.presentation.designsystem.CalendarIcon
 import com.example.core.presentation.designsystem.RunOutlinedIcon
 import com.example.core.presentation.designsystem.RuniqueTheme
-import com.example.core.presentation.ui.UiText
 import com.example.run.domain.RunData
 import com.example.run.presentation.R
 import com.example.run.presentation.run_overview.mapper.toRunUi
@@ -60,7 +60,6 @@ import kotlin.math.max
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RunListItem(
     runUi: RunUi,
@@ -70,10 +69,7 @@ fun RunListItem(
     var showDropDown by remember {
         mutableStateOf(false)
     }
-
     Box {
-
-
         Column(
             modifier = modifier
                 .clip(RoundedCornerShape(15.dp))
@@ -87,44 +83,35 @@ fun RunListItem(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-
             MapImage(imageUrl = runUi.mapPictureUrl)
-
             RunningTimeSection(
                 duration = runUi.duration,
                 modifier = Modifier.fillMaxWidth()
             )
-
             HorizontalDivider(
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
             )
-
             RunningDateSection(dateTime = runUi.dateTime)
             DataGrid(
                 run = runUi,
                 modifier = Modifier.fillMaxWidth()
             )
         }
-
         DropdownMenu(
             expanded = showDropDown,
             onDismissRequest = { showDropDown = false }
         ) {
-
             DropdownMenuItem(
                 text = {
                     Text(text = stringResource(id = R.string.delete))
                 },
                 onClick = {
                     showDropDown = false
-                    onDeleteClick
+                    onDeleteClick()
                 }
             )
-
         }
     }
-
-
 }
 
 @Composable
@@ -132,7 +119,6 @@ private fun MapImage(
     imageUrl: String?,
     modifier: Modifier = Modifier
 ) {
-
     SubcomposeAsyncImage(
         model = imageUrl,
         contentDescription = stringResource(id = R.string.run_map),
@@ -146,12 +132,10 @@ private fun MapImage(
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-
                 CircularProgressIndicator(
                     modifier = Modifier.size(20.dp),
                     strokeWidth = 2.dp,
                     color = MaterialTheme.colorScheme.onSurface
-
                 )
             }
         },
@@ -162,29 +146,24 @@ private fun MapImage(
                     .background(MaterialTheme.colorScheme.errorContainer),
                 contentAlignment = Alignment.Center
             ) {
-
                 Text(
                     text = stringResource(id = R.string.error_couldnt_load_image),
                     color = MaterialTheme.colorScheme.error
                 )
             }
         }
-
     )
 }
 
 @Composable
 private fun RunningTimeSection(
-    modifier: Modifier = Modifier,
-    duration: String
-
+    duration: String,
+    modifier: Modifier = Modifier
 ) {
-
     Row(
-        modifier = Modifier,
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-
         Box(
             modifier = Modifier
                 .size(40.dp)
@@ -198,13 +177,11 @@ private fun RunningTimeSection(
                 .padding(4.dp),
             contentAlignment = Alignment.Center
         ) {
-
             Icon(
                 imageVector = RunOutlinedIcon,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary
             )
-
         }
         Spacer(modifier = Modifier.width(16.dp))
         Column(
@@ -220,23 +197,18 @@ private fun RunningTimeSection(
                 text = duration,
                 color = MaterialTheme.colorScheme.onSurface
             )
-
         }
-
-
     }
 }
 
 @Composable
 private fun RunningDateSection(
-    modifier: Modifier = Modifier,
-    dateTime: String
+    dateTime: String,
+    modifier: Modifier = Modifier
 ) {
-
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
-
     ) {
         Icon(
             imageVector = CalendarIcon,
@@ -244,24 +216,18 @@ private fun RunningDateSection(
             tint = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Spacer(modifier = Modifier.width(16.dp))
-
         Text(
             text = dateTime,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
-
     }
-
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun DataGrid(
     run: RunUi,
     modifier: Modifier = Modifier
-
 ) {
-
     val runDataUiList = listOf(
         RunDataUi(
             name = stringResource(id = R.string.distance),
@@ -287,15 +253,12 @@ private fun DataGrid(
     var maxWidth by remember {
         mutableIntStateOf(0)
     }
-
     val maxWidthDp = with(LocalDensity.current) { maxWidth.toDp() }
-
     FlowRow(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-
         runDataUiList.forEach { run ->
             DataGridCell(
                 runData = run,
@@ -315,7 +278,7 @@ private fun DataGridCell(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
     ) {
         Text(
             text = runData.name,
@@ -323,14 +286,12 @@ private fun DataGridCell(
             fontSize = 12.sp
         )
         Spacer(modifier = Modifier.height(4.dp))
-
         Text(
             text = runData.value,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }
-
 
 @Preview
 @Composable

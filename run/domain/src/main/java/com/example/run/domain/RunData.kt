@@ -1,6 +1,6 @@
 package com.example.run.domain
 
-
+import com.example.core.domain.location.Location
 import com.example.core.domain.location.LocationTimestamp
 import kotlin.time.Duration
 

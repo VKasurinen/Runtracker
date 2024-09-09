@@ -14,5 +14,4 @@ data class RunDto(
     val maxSpeedKmh: Double,
     val totalElevationMeters: Int,
     val mapPictureUrl: String?
-
 )

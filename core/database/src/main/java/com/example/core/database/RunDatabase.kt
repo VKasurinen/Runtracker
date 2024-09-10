@@ -13,8 +13,7 @@ import com.example.core.database.entity.RunPendingSyncEntity
     entities = [
         RunEntity::class,
         RunPendingSyncEntity::class,
-        DeletedRunSyncEntity::class,
-
+        DeletedRunSyncEntity::class
     ],
     version = 1
 )
@@ -22,5 +21,5 @@ abstract class RunDatabase : RoomDatabase() {
 
     abstract val runDao: RunDao
     abstract val runPendingSyncDao: RunPendingSyncDao
-    //abstract val analyticsDao: AnalyticsDao
+    abstract val analyticsDao: AnalyticsDao
 }

@@ -148,8 +148,9 @@ runique-android-room = {id = "runique.android.room", version = "unspecified" }
 runique-android-dynamic-feature = {id = "runique.android.dynamic.feature", version = "unspecified" }
 runique-jvm-library = {id = "runique.jvm.library", version = "unspecified" }
 runique-jvm-ktor = {id = "runique.jvm.ktor", version = "unspecified" }
-runique-jvm-junit5 = {id = "runique.jvm.junit5", version = "unspecified" }
-runique-android-junit5 = {id = "runique.android.junit5", version = "unspecified" }
+runique-jvm-junit5 = { id = "runique.jvm.junit5", version = "unspecified" }
+runique-android-junit5 = { id = "runique.android.junit5", version = "unspecified" }
+
 
 
 

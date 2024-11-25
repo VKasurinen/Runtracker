@@ -23,6 +23,10 @@ gradlePlugin {
             id = "runique.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
+        register("androidApplicationWearCompose") {
+            id = "runique.android.application.wear.compose"
+            implementationClass = "AndroidApplicationWearComposeConventionPlugin"
+        }
         register("androidLibrary") {
             id = "runique.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
@@ -55,12 +59,9 @@ gradlePlugin {
             id = "runique.jvm.junit5"
             implementationClass = "JvmJUnit5ConventionPlugin"
         }
-        register("androidJUnit5") {
+        register("androidJunit5") {
             id = "runique.android.junit5"
-            implementationClass = "AndroidJunit5ConventionPlugin"
+            implementationClass = "AndroidJUnit5ConventionPlugin"
         }
-
     }
 }
-
-

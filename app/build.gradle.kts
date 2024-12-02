@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.runique.android.application.compose)
     alias(libs.plugins.runique.jvm.ktor)
     alias(libs.plugins.runique.android.junit5)
+    kotlin("android")
 }
 
 android {
@@ -19,7 +20,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    //dynamicFeatures += setOf(":analytics:analytics_feature")
+    dynamicFeatures += setOf(":analytics:analytics_feature")
 }
 
 dependencies {
@@ -79,4 +80,11 @@ dependencies {
     implementation(projects.run.data)
     implementation(projects.run.location)
     implementation(projects.run.network)
+
+    testImplementation(libs.mockito.core)
+    androidTestImplementation(libs.mockito.android)
+    testImplementation(libs.mockito.inline)
+    //testImplementation(libs.mockito.kotlin)
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
+
 }

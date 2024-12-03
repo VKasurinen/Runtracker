@@ -70,7 +70,7 @@ class RegisterViewModel(
         }
     }
 
-    private fun register() {
+    fun register() {
         viewModelScope.launch {
             state = state.copy(isRegistering = true)
             val result = repository.register(

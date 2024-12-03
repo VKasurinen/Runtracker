@@ -21,6 +21,14 @@ val loginResponseStub = LoginResponse(
     userId = "test-user-id"
 )
 
+/*val registerResponseStub = RegisterResponse(
+    userId = "test-user-id",
+    accessToken = "test-access-token",
+    refreshToken = "test-refresh-token"
+)
+
+ */
+
 class TestMockEngine(
     override val dispatcher: CoroutineDispatcher,
     private val mockEngineConfig: MockEngineConfig

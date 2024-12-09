@@ -21,6 +21,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Wear" />
+            <option value="$PROJECT_DIR$/Wear/app" />
+            <option value="$PROJECT_DIR$/Wear/run" />
+            <option value="$PROJECT_DIR$/Wear/run/data" />
+            <option value="$PROJECT_DIR$/Wear/run/domain" />
+            <option value="$PROJECT_DIR$/Wear/run/presentation" />
             <option value="$PROJECT_DIR$/analytics" />
             <option value="$PROJECT_DIR$/analytics/analytics_feature" />
             <option value="$PROJECT_DIR$/analytics/data" />
@@ -40,6 +46,7 @@
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/presentation" />
             <option value="$PROJECT_DIR$/core/presentation/designsystem" />
+            <option value="$PROJECT_DIR$/core/presentation/designsystem_wear" />
             <option value="$PROJECT_DIR$/core/presentation/ui" />
             <option value="$PROJECT_DIR$/core/test" />
             <option value="$PROJECT_DIR$/run" />

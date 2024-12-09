@@ -84,7 +84,7 @@ dependencies {
     testImplementation(libs.mockito.core)
     androidTestImplementation(libs.mockito.android)
     testImplementation(libs.mockito.inline)
-    //testImplementation(libs.mockito.kotlin)
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
+    testImplementation(libs.mockito.kotlin)
+    //testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
 
 }

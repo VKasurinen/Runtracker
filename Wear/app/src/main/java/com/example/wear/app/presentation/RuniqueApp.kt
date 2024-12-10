@@ -1,7 +1,7 @@
 package com.example.wear.app.presentation
 
 import android.app.Application
-import com.example.core.connectivity.data.coreConnectivityDataModule
+import com.example.core.connectivity.data.di.coreConnectivityDataModule
 import com.example.wear.app.presentation.di.appModule
 import com.example.wear.run.presentation.di.wearRunPresentationModule
 import com.example.wear.run.data.di.wearRunDataModule

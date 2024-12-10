@@ -1,4 +1,4 @@
-package com.plcoding.auth.domain
+package com.example.auth.domain
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo

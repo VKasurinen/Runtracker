@@ -80,6 +80,8 @@ dependencies {
     implementation(projects.run.data)
     implementation(projects.run.location)
     implementation(projects.run.network)
+    implementation(projects.core.connectivity.domain)
+    implementation(projects.core.connectivity.data)
 
     testImplementation(libs.mockito.core)
     androidTestImplementation(libs.mockito.android)

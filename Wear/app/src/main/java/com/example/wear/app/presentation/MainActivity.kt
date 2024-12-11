@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.wear.compose.material3.Button
 import androidx.wear.compose.material3.Text
+import com.example.core.notification.ActiveRunService
 import com.example.core.presentation.designsystem_wear.RuniqueTheme
 import com.example.wear.run.presentation.TrackerScreenRoot
 
@@ -22,7 +23,21 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             RuniqueTheme {
-                TrackerScreenRoot()
+                TrackerScreenRoot(
+                    onServiceToggle = {shouldStartRunning ->
+                        if(shouldStartRunning) {
+                            startService(
+                                ActiveRunService.createStartIntent(
+                                    applicationContext, this::class.java
+                                )
+                            )
+                        } else {
+                            startService(
+                                ActiveRunService.createStopIntent(applicationContext)
+                            )
+                        }
+                    }
+                )
             }
         }
     }

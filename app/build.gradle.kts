@@ -82,11 +82,12 @@ dependencies {
     implementation(projects.run.network)
     implementation(projects.core.connectivity.domain)
     implementation(projects.core.connectivity.data)
+    implementation(projects.core.notification)
 
     testImplementation(libs.mockito.core)
     androidTestImplementation(libs.mockito.android)
     testImplementation(libs.mockito.inline)
     testImplementation(libs.mockito.kotlin)
-    //testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
+
 
 }

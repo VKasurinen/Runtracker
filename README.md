@@ -2,7 +2,7 @@
 
 ### Course from Philipp Lackner
 
-During this course I did Multi-Module Runningtracker Android application
+During this course I did Multi-Module Runningtracker Android application and also implemented it on a smart watch
 
 ### Pictures:
 

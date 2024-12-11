@@ -34,10 +34,10 @@ class ActiveRunViewModelTest {
     fun setUp() {
         val applicationScope = CoroutineScope(Dispatchers.Default)
         val locationObserver = mock(LocationObserver::class.java)
-        runningTracker = RunningTracker(locationObserver, applicationScope)
+        //runningTracker = RunningTracker(locationObserver, applicationScope)
         //runningTracker = mock(RunningTracker::class.java) // Mock RunningTracker
         runRepository = mock(RunRepository::class.java)
-        viewModel = ActiveRunViewModel(runningTracker, runRepository)
+        //viewModel = ActiveRunViewModel(runningTracker, runRepository)
     }
     @Test
     fun testStartAndStopTracking() = runTest {

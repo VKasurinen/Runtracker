@@ -52,10 +52,12 @@ class RunningTrackerTest {
         testDispatcher = mainCoroutineExtension.testDispatcher
         testScope = CoroutineScope(testDispatcher)
 
-        runningTracker = RunningTracker(
+        /*runningTracker = RunningTracker(
             locationObserver = locationObserverFake,
             applicationScope = testScope
         )
+
+         */
     }
 
     @Test

@@ -17,3 +17,16 @@ During this course I did Multi-Module Runningtracker Android application
 #### RunScreen
 
 ![Run Screen](runscreen.png)
+
+
+#### Watch default screen
+
+![Watch_1](watch1.png)
+
+#### Watch when starting a run
+
+![Watch_2](watch2.png)
+
+#### Watch when pausing a run
+
+![Watch_3](watch3.png)
